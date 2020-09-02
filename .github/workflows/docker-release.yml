@@ -36,7 +36,7 @@ jobs:
 
   build--netflow:
     needs: [changes]
-    if: ${{ needs.changes.outputs.netflow == 'true' }}
+    if: startsWith(github.ref, 'refs/tags/v') || ${{ needs.changes.outputs.netflow == 'true' }}
     runs-on: ubuntu-latest
     steps:
       -
@@ -109,6 +109,7 @@ jobs:
           rm -f ${HOME}/.docker/config.json
   build--nginx:
     needs: [changes]
+    if: startsWith(github.ref, 'refs/tags/v') || ${{ needs.changes.outputs.nginx == 'true' }}
     runs-on: ubuntu-latest
     steps:
       -
@@ -181,7 +182,7 @@ jobs:
           rm -f ${HOME}/.docker/config.json
   build--siridb:
     needs: [changes]
-    if: ${{ needs.changes.outputs.siridb == 'true' }}
+    if: startsWith(github.ref, 'refs/tags/v') || ${{ needs.changes.outputs.siridb == 'true' }}
     runs-on: ubuntu-latest
     steps:
       -
@@ -254,7 +255,7 @@ jobs:
           rm -f ${HOME}/.docker/config.json
   build--ucrm:
     needs: [changes]
-    if: ${{ needs.changes.outputs.ucrm == 'true' }}
+    if: startsWith(github.ref, 'refs/tags/v') || ${{ needs.changes.outputs.ucrm == 'true' }}
     runs-on: ubuntu-latest
     steps:
       -
@@ -326,7 +327,8 @@ jobs:
         run: |
           rm -f ${HOME}/.docker/config.json
   build:
-    if: ${{ needs.changes.outputs.unms == 'true' }}
+    needs: [changes]
+    if: startsWith(github.ref, 'refs/tags/v') || ${{ needs.changes.outputs.unms == 'true' }}
     runs-on: ubuntu-latest
     steps:
       -
