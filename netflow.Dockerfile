@@ -12,7 +12,10 @@ RUN apk add --no-cache --update --virtual .build-deps \
         dumb-init \
  && cd /home/app \
  && rm -rf node_modules \
- && yarn install --production --no-cache --ignore-engines \
+ && CHILD_CONCURRENCY=1 yarn install --ignore-engines \
+                                     --network-timeout 1000000 \
+                                     --no-cache \
+                                     --production \
  && yarn cache clean \
  && apk del --purge .build-deps \
  && rm -rf /var/cache/apk/*

@@ -45,8 +45,12 @@ RUN sed -i 's#dirs=(#dirs=(\n  \${DATA_DIR}/cache#g' \
  && rm -rf node_modules \
  && sed -i 's/"@sentry\/cli": "1.49.0"/"@sentry\/cli": "1.55.2"/g' package.json \
  && sed -i "/postinstall/d" package.json \
- && CHILD_CONCURRENCY=1 yarn install --production --no-cache --ignore-engines \
+ && CHILD_CONCURRENCY=1 yarn install --ignore-engines \
+                                     --network-timeout 1000000 \
+                                     --no-cache \
+                                     --production \
  && yarn add npm --production \
+ && yarn cache clean \
  && mkdir -p -m 777 "public/site-images" \
  && cp -r /home/app/unms/node_modules/npm /home/app/unms/ \
  && apk del --purge .build-deps \
