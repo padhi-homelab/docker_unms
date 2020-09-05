@@ -1,10 +1,35 @@
+FROM alpine:3.12 as builder
+
+RUN apk update \
+ && apk upgrade \
+ && apk add --no-cache --update \
+        gcc \
+        git \
+        libuv-dev \
+        linux-headers \
+        make \
+        musl-dev \
+        pcre2-dev \
+        util-linux-dev \
+        yajl-dev \
+ && git clone https://github.com/transceptor-technology/libcleri.git \
+              /tmp/libcleri \
+ && cd /tmp/libcleri/Release \
+ && make all \
+ && make install \
+ && git clone https://github.com/SiriDB/siridb-server.git \
+        /tmp/siridb-server \
+ && cd /tmp/siridb-server/Release \
+ && make clean \
+ && make
+
+
 FROM ubnt/unms-siridb:1.2.6 as unms-siridb
-FROM siridb/siridb-server:2.0.38 as siridb
 
 FROM alpine:3.12
 
-COPY --from=siridb /usr/local/bin/siridb-server /usr/local/bin/
-COPY --from=siridb /usr/lib/libcleri* /usr/lib/
+COPY --from=builder /tmp/siridb-server/Release/siridb-server /usr/local/bin/
+COPY --from=builder /usr/lib/libcleri* /usr/lib/
 
 COPY --from=unms-siridb /entrypoint.sh /entrypoint.sh
 COPY --from=unms-siridb /etc/siridb/siridb.conf /etc/siridb/siridb.conf
