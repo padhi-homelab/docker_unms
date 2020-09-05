@@ -20,7 +20,9 @@ RUN apk add --no-cache --update --virtual .build-deps \
  && apk del --purge .build-deps \
  && rm -rf /var/cache/apk/*
 
-ENV UNMS_PG_HOST=postgres \
+ENV UNMS_REDISDB_HOST=redis \
+    UNMS_RABBITMQ_HOST=rabbitmq \
+    UNMS_PG_HOST=postgres \
     UNMS_PG_PORT=5432 \
     UNMS_NETFLOW_PORT=2055 \
     UNMS_PG_PASSWORD=unms \
