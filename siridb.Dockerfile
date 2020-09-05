@@ -1,5 +1,8 @@
 FROM alpine:3.12 as builder
 
+ARG LIBCLERI_VERSION=0.12.1
+ARG SIRIDB_VERSION=2.0.38
+
 RUN apk update \
  && apk upgrade \
  && apk add --no-cache --update \
@@ -14,12 +17,16 @@ RUN apk update \
         yajl-dev \
  && git clone https://github.com/transceptor-technology/libcleri.git \
               /tmp/libcleri \
- && cd /tmp/libcleri/Release \
+ && cd /tmp/libcleri \
+ && git checkout $LIBCLERI_VERSION \
+ && cd Release \
  && make all \
  && make install \
  && git clone https://github.com/SiriDB/siridb-server.git \
         /tmp/siridb-server \
- && cd /tmp/siridb-server/Release \
+ && cd /tmp/siridb-server \
+ && git checkout $SIRIDB_VERSION \
+ && cd Release \
  && make clean \
  && make
 
