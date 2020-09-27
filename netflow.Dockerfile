@@ -1,4 +1,4 @@
-FROM ubnt/unms-netflow:1.2.6 as unms-netflow
+FROM ubnt/unms-netflow:1.2.7 as unms-netflow
 
 FROM node:10-alpine
 

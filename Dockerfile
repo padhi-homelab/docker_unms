@@ -1,4 +1,4 @@
-FROM ubnt/unms:1.2.6 as unms
+FROM ubnt/unms:1.2.7 as unms
 
 FROM node:10-alpine
 
