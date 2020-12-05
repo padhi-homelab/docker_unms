@@ -1,7 +1,7 @@
 FROM alpine:3.12 as builder
 
 ARG LIBCLERI_VERSION=0.12.1
-ARG SIRIDB_VERSION=2.0.40
+ARG SIRIDB_VERSION=2.0.42
 
 RUN apk update \
  && apk upgrade \
@@ -31,7 +31,7 @@ RUN apk update \
  && make
 
 
-FROM ubnt/unms-siridb:1.2.7 as unms-siridb
+FROM ubnt/unms-siridb:1.3.2 as unms-siridb
 
 FROM alpine:3.12
 
