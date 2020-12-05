@@ -1,6 +1,6 @@
 FROM ubnt/unms-crm:3.3.2 as unms-crm
 
-FROM php:7.3.25-fpm-alpine
+FROM php:8.0.0-fpm-alpine
 
 ARG NGINX_VERSION=1.19.5
 ADD "https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" \
