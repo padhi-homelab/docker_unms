@@ -1,6 +1,6 @@
 FROM ubnt/unms:1.3.2 as unms
 
-FROM node:10-alpine
+FROM node:15-alpine
 
 ARG LIBVIPS_VERSION=8.10.2
 

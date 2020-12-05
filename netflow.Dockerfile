@@ -1,6 +1,6 @@
 FROM ubnt/unms-netflow:1.3.2 as unms-netflow
 
-FROM node:10-alpine
+FROM node:15-alpine
 
 COPY --from=unms-netflow /home/app /home/app
 COPY --from=unms-netflow /usr/local/bin/docker-entrypoint.sh /usr/local/bin/
