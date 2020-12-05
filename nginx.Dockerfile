@@ -1,4 +1,4 @@
-FROM ubnt/unms-nginx:1.2.7 as unms-nginx
+FROM ubnt/unms-nginx:1.3.2 as unms-nginx
 
 FROM alpine:3.12
 USER root
@@ -8,11 +8,11 @@ COPY --from=unms-nginx refresh-certificate.sh refresh-configuration.sh openssl.c
 COPY --from=unms-nginx /templates /templates
 COPY --from=unms-nginx /www /www
 
-ENV NGINX_VERSION=nginx-1.19.2 \
+ENV NGINX_VERSION=nginx-1.19.5 \
     NGINX_LUA_VERSION=0.10.14 \
     NGINX_DEVEL_KIT_VERSION=0.3.1 \
     LUAJIT_VERSION=2.1.0-beta3 \
-    CERTBOT_VERSION=1.7.0
+    CERTBOT_VERSION=1.8.0
 
 ADD "http://nginx.org/download/${NGINX_VERSION}.tar.gz" \
     /tmp/nginx.tar.gz

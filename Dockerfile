@@ -1,8 +1,8 @@
-FROM ubnt/unms:1.2.7 as unms
+FROM ubnt/unms:1.3.2 as unms
 
 FROM node:10-alpine
 
-ARG LIBVIPS_VERSION=8.10.0
+ARG LIBVIPS_VERSION=8.10.2
 
 ADD "https://github.com/libvips/libvips/releases/download/v${LIBVIPS_VERSION}/vips-${LIBVIPS_VERSION}.tar.gz" \
     /tmp/libvips.tar.gz
