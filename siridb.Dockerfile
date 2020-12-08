@@ -31,7 +31,7 @@ RUN apk update \
  && make
 
 
-FROM ubnt/unms-siridb:1.3.2 as unms-siridb
+FROM ubnt/unms-siridb:1.3.3 as unms-siridb
 
 FROM alpine:3.12
 
