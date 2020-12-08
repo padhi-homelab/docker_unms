@@ -1,4 +1,4 @@
-FROM ubnt/unms-nginx:1.3.2 as unms-nginx
+FROM ubnt/unms-nginx:1.3.3 as unms-nginx
 
 FROM alpine:3.12
 USER root
